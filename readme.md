@@ -38,3 +38,7 @@ Ensure that the master node can communicate with all worker nodes on their respe
 ## Conclusion
 
 By following these steps, you will have a fully functional LLM cluster with LlamaCPP RPC. For further customization and configuration, refer to the `master.sh` and `worker.sh` scripts.
+
+## References
+
+Dustynv
