@@ -3,8 +3,9 @@
 This guide provides instructions for deploying an LLM cluster using LlamaCPP RPC. The deployment requires two Docker images: one for the master node and one for the worker nodes. You can have multiple worker nodes, but only one master node.
 
 ## Prerequisites
-
-- Docker installed on all nodes
+- A NVIDIA Jetson Computer
+- Jetpack 6 or higher
+- Docker installed on all nodes (Docker version 1.26)
 - All worker nodes connected to the same network
 
 ## Steps
