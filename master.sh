@@ -18,6 +18,7 @@ LLAMA_CLI_CMD="bin/llama-cli -hf ${MODEL_ID} -p \"${PROMPT}\" --repeat-penalty $
 # Run the container with the entrypoint overridden via --entrypoint
 docker run --rm -it \
     -p 9090:9090 \
+    -v ~/models:/root/.cache/llama.cpp \
     --entrypoint /bin/bash \
     arda78484/llamacpp-rpcserver:master \
     -c "cd /opt/llama.cpp/build-rpc-cuda" \
