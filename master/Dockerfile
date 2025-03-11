@@ -1,6 +1,9 @@
 # Use the specified base image
 FROM arda78484/llamacpp-rpcserver:worker
 
+# Change directory to /root/.cache and remove any existing llama.cpp directory
+RUN cd /root/.cache && rm -rf llama.cpp && mkdir llama.cpp
+
 # Set the working directory inside the container
 WORKDIR /opt/llama.cpp
 

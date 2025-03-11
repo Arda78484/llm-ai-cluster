@@ -32,13 +32,12 @@ docker run --rm -it \
     --entrypoint /bin/bash \
     arda78484/llamacpp-rpcserver:master \
     -c "cd /opt/llama.cpp/build-rpc-cuda && \
-        bin/llama-cli -m /path/to/model \
-                      -hf bartowski/Qwen2.5-14B-Instruct-GGUF \
+        bin/llama-cli -hf bartowski/Qwen2.5-14B-Instruct-GGUF \
                       -p \"Hello, my name is\" \
+                      -n 1024 \
                       -ngl 99 \
                       --repeat_penalty 1.0 \
-                      --n 1024 \
-                      --workers 192.168.1.156:9010,192.168.1.80:9020"
+                      --rpc 192.168.1.156:9010,192.168.1.80:9020"
 ```
 
 Or you can simply run master.sh
