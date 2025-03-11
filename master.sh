@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Define an array of worker IP:port addresses
+workers=("192.168.1.156:9010" "192.168.1.80:9020")  # Add more workers as needed
+
+MODEL_DIR="../models"
+MODEL_ID="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF"  ## Change it with the desired model from hugging face hub
+PROMPT="Hello, my name is"
+REPEAT_PENALTY="1.0"
+TOKENS="64"
+NGL="99"
+
+# Join workers array into a comma-separated string
+workers_list=$(IFS=, ; echo "${workers[*]}")
+
+# Build the llama-cli command with the desired arguments, including the comma-separated workers list
+LLAMA_CLI_CMD="bin/llama-cli -m ${MODEL_DIR} -hf ${MODEL_ID} -p \"${PROMPT}\" --repeat-penalty ${REPEAT_PENALTY} -n ${TOKENS} --rpc ${workers_list} -ngl ${NGL}"
+
+# Run the container with the entrypoint overridden via --entrypoint
+docker run --rm -it \
+    -p 9090:9090 \
+    --entrypoint /bin/sh \
+    your-docker-image \
+    -c "${LLAMA_CLI_CMD}"
