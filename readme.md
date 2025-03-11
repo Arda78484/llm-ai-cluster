@@ -29,6 +29,7 @@ Replace `9010` with a different port number for each worker node.
 ```sh
 docker run --rm -it \
     -p 9090:9090 \
+    -v ~/models:/root/.cache/llama.cpp \
     --entrypoint /bin/bash \
     arda78484/llamacpp-rpcserver:master \
     -c "cd /opt/llama.cpp/build-rpc-cuda && \
