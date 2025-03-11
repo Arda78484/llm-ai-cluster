@@ -7,7 +7,7 @@ MODEL_DIR="../models"
 MODEL_ID="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF"  ## Change it with the desired model from hugging face hub
 PROMPT="Hello, my name is"
 REPEAT_PENALTY="1.0"
-TOKENS="64"
+TOKENS="1024" ## Adjust the number of output tokens as needed
 NGL="99"
 
 # Join workers array into a comma-separated string
@@ -20,5 +20,5 @@ LLAMA_CLI_CMD="bin/llama-cli -m ${MODEL_DIR} -hf ${MODEL_ID} -p \"${PROMPT}\" --
 docker run --rm -it \
     -p 9090:9090 \
     --entrypoint /bin/sh \
-    your-docker-image \
+    arda78484/llamacpp-rpcserver:master \
     -c "${LLAMA_CLI_CMD}"
