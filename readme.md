@@ -26,7 +26,22 @@ Replace `9010` with a different port number for each worker node.
 
 ### 2. Deploy Master Node
 
-On the master node, follow the instructions in the `master.sh` scripts to complete the setup.
+```sh
+docker run --rm -it \
+    -p 9090:9090 \
+    --entrypoint /bin/bash \
+    arda78484/llamacpp-rpcserver:master \
+    -c "cd /opt/llama.cpp/build-rpc-cuda && \
+        bin/llama-cli -m /path/to/model \
+                      -hf bartowski/Qwen2.5-14B-Instruct-GGUF \
+                      -p \"Hello, my name is\" \
+                      -ngl 99 \
+                      --repeat_penalty 1.0 \
+                      --n 1024 \
+                      --workers 192.168.1.156:9010,192.168.1.80:9020"
+```
+
+Or you can simply run master.sh
 
 ```sh
 chmod +x master.sh
